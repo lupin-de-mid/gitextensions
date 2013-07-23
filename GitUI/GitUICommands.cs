@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using GitCommands;
+using GitCommands.Git;
 using GitUI.CommandsDialogs;
 using GitUI.CommandsDialogs.RepoHosting;
 using GitUI.CommandsDialogs.SettingsDialog;
@@ -679,6 +680,46 @@ namespace GitUI
         {
             return StartSvnFetchDialog(null);
         }
+
+		public bool StartMediaClearDialog(IWin32Window owner)
+		{
+			Func<bool> action = () =>
+			{
+				return FormProcess.ShowDialog(owner, Module, Settings.GitCommand, GitMediaCommandHelpers.ClearCmd());
+			};
+
+			return DoActionOnRepo(owner, true, true, PreSvnFetch, PostSvnFetch, action);
+		}
+
+		public bool StartMediaSyncDialog(IWin32Window owner)
+		{
+			Func<bool> action = () =>
+			{
+				return FormProcess.ShowDialog(owner, Module, Settings.GitCommand, GitMediaCommandHelpers.SyncCmd());
+			};
+
+			return DoActionOnRepo(owner, true, true, PreSvnFetch, PostSvnFetch, action);
+		}
+
+		public bool StartMediaStatusDialog(IWin32Window owner)
+		{
+			Func<bool> action = () =>
+			{
+				return FormProcess.ShowDialog(owner, Module, Settings.GitCommand, GitMediaCommandHelpers.StatusCmd());
+			};
+
+			return DoActionOnRepo(owner, true, true, PreSvnFetch, PostSvnFetch, action);
+		}
+
+		public bool StartMediaDownloadDialog(IWin32Window owner)
+		{
+			Func<bool> action = () =>
+			{
+				return FormProcess.ShowDialog(owner, Module, Settings.GitCommand, GitMediaCommandHelpers.DownloadCmd());
+			};
+
+			return DoActionOnRepo(owner, true, true, PreSvnFetch, PostSvnFetch, action);
+		}
 
         public bool StartInitializeDialog(IWin32Window owner, GitModuleChangedEventHandler GitModuleChanged)
         {
@@ -2114,5 +2155,8 @@ namespace GitUI
                 return e.Handled;
             }
         }
+
+
+	    
     }
 }

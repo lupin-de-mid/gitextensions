@@ -2563,6 +2563,26 @@ namespace GitUI.CommandsDialogs
             UICommands.StartSvnFetchDialog(this);
         }
 
+		private void MediaSyncTool_Click(object sender, EventArgs e)
+		{
+			UICommands.StartMediaSyncDialog(this);
+		}
+
+		private void MediaClearTool_Click(object sender, EventArgs e)
+		{
+			UICommands.StartMediaClearDialog(this);
+		}
+
+		private void MediaDownloadTool_Click(object sender, EventArgs e)
+		{
+			UICommands.StartMediaDownloadDialog(this);
+		}
+
+		private void MediaStatusTool_Click(object sender, EventArgs e)
+		{
+			UICommands.StartMediaStatusDialog(this);
+		}
+
         private void expandAllStripMenuItem_Click(object sender, EventArgs e)
         {
             GitTree.ExpandAll();
